@@ -1,30 +1,4 @@
-function criaElemento(elemento){
-  if(!elemento.tipo){
-    console.log("o tipo é o brigatório")
-    return null
-  }
-
-  let novoElemento = document.createElement(elemento.tipo);
-    for (let propriedade in elemento){
-      if(propriedade !== "tipo" && propriedade !=="eventos" && propriedade !=="textContent" && propriedade !== "style"){
-        novoElemento.setAttribute(propriedade, elemento[propriedade]);
-      }
-    }
-    novoElemento.textContent = elemento.textContent
-    if(elemento.eventos){
-      for(let evento in elemento.eventos){
-        novoElemento.addEventListener(evento, elemento.eventos[evento])
-      }
-    }  
-    if(elemento.style){
-      let css='';
-      for(let style in elemento.style){
-        css += `${style} : ${elemento.style[style]}; `
-      }
-      novoElemento.setAttribute("style", css)
-    }  
-    return novoElemento;
-}
+import criaElemento from "./componentes/CriaElemento.js";
 
 let botao = {
   tipo: 'button',
@@ -68,6 +42,43 @@ let card = {
   
 
 };
+
+let table = {
+  tipo: 'table',
+  id: 'div-1',
+  className: 'div-primary',
+  th: {
+    col1: 'Nome',
+    col2: 'Idade',
+    col3: 'Nascionalidade',
+  },
+  td: [
+    {
+    nome: 'jose',
+    idade: '30',
+    nacionalidade: 'Brasileiro',
+  },
+  {
+    nome: 'maria',
+    idade: '25',
+    nacionalidade: 'Nacionalidade',
+  },
+  {
+    nome: 'Nome',
+    idade: 'Idade',
+    nacionalidade: 'Nacionalidade',
+  },
+],
+  style: {
+    display: 'inline-block',
+    width: '300px',
+    height: '300px',
+    border: 'solid 2px red',
+  }
+  
+
+};
+
 
 card = criaElemento(card);
 botao = criaElemento(botao);
