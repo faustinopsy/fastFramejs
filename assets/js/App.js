@@ -1,88 +1,31 @@
-import criaElemento from "./componentes/CriaElemento.js";
+import {criaElemento, criaTabela } from "./componentes/CriaElemento.js";
+import {container, card, input, botao, widget, table } from "./componentes/Componentes.js";
 
-let botao = {
-  tipo: 'button',
-  id: 'btn-1',
-  textContent: 'clique aqui',
-  className: 'btn-primary',
-  placeholder: 'clique aqui',
-  eventos: {
-    click: function(){
-      console.log('clicado')
-    }
-  }
 
-};
+function fabrica(){
+  const meusDadosDaTabela = {
+    th: table.th,
+    td: table.td,
+    id: table.id || "minha-tabela", 
+    className: table.className || "", 
+    style: table.style || {} 
+  };
 
-let input = {
-  tipo: 'input',
-  id: 'input-1',
-  textContent: 'Escreva aqui',
-  className: 'input-primary',
-  placeholder: 'Escreva aqui',
-  eventos: {
-    blur: function(e){
-      console.log(e)
-    }
-  }
-
-};
-
-let card = {
-  tipo: 'div',
-  id: 'div-1',
-  className: 'div-primary',
-  placeholder: '',
-  style: {
-    display: 'inline-block',
-    width: '300px',
-    height: '300px',
-    border: 'solid 2px red',
-  }
+  const elementoTabela = criaTabela(meusDadosDaTabela);
+  const novocontainer = criaElemento(container);
+  const novocard = criaElemento(card);
+  const novobotao = criaElemento(botao);
+  const novowidget = criaElemento(widget);
+  const novoinput = criaElemento(input);
   
-
-};
-
-let table = {
-  tipo: 'table',
-  id: 'div-1',
-  className: 'div-primary',
-  th: {
-    col1: 'Nome',
-    col2: 'Idade',
-    col3: 'Nascionalidade',
-  },
-  td: [
-    {
-    nome: 'jose',
-    idade: '30',
-    nacionalidade: 'Brasileiro',
-  },
-  {
-    nome: 'maria',
-    idade: '25',
-    nacionalidade: 'Nacionalidade',
-  },
-  {
-    nome: 'Nome',
-    idade: 'Idade',
-    nacionalidade: 'Nacionalidade',
-  },
-],
-  style: {
-    display: 'inline-block',
-    width: '300px',
-    height: '300px',
-    border: 'solid 2px red',
-  }
   
+  novocard.appendChild(elementoTabela)
+  novocontainer.appendChild(novoinput)
+  novocontainer.appendChild(novobotao)
+  novocontainer.appendChild(novocard)
+  
+  document.body.appendChild(novocontainer)
+  document.body.appendChild(novowidget)
+}
 
-};
-
-
-card = criaElemento(card);
-botao = criaElemento(botao);
-input = criaElemento(input);
-card.appendChild(botao)
-card.appendChild(input)
-document.body.appendChild(card)
+fabrica()

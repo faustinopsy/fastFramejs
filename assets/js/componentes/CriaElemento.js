@@ -1,27 +1,70 @@
-export default function criaElemento(elemento){
-  if(!elemento.tipo){
-    console.log("o tipo é o brigatório")
-    return null
+import Elemento from "./FastFrame.js";
+export function criaElemento(elemento){
+  const novoElemento = new Elemento(elemento);
+    return novoElemento.gerarElemento();
+}
+
+export function criaTabela(dadosTabela) {
+  if (!dadosTabela.th || !dadosTabela.td) {
+    console.error("Parâmetros th e td obrigatórios para criar tabela!");
+    return null;
   }
 
-  let novoElemento = document.createElement(elemento.tipo);
-    for (let propriedade in elemento){
-      if(propriedade !== "tipo" && propriedade !=="eventos" && propriedade !=="textContent" && propriedade !== "style"){
-        novoElemento.setAttribute(propriedade, elemento[propriedade]);
+  const tabela = new Elemento({
+    tipo: "table",
+    id: dadosTabela.id || "tabela-dinamica",
+    className: dadosTabela.className || "",
+  });
+
+  const thead = new Elemento({
+    tipo: "thead",
+  });
+
+  const linhaCabecalho = new Elemento({
+    tipo: "tr",
+  });
+
+  for (const coluna in dadosTabela.th) {
+    const celulaCabecalho = new Elemento({
+      tipo: "th",
+      textContent: dadosTabela.th[coluna],
+    });
+    linhaCabecalho.novoElemento.appendChild(celulaCabecalho.gerarElemento());
+  }
+
+  thead.novoElemento.appendChild(linhaCabecalho.gerarElemento());
+  tabela.novoElemento.appendChild(thead.gerarElemento());
+
+  const tbody = new Elemento({
+    tipo: "tbody",
+  });
+
+  dadosTabela.td.forEach((linha) => {
+    const linhaTabela = new Elemento({
+      tipo: "tr",
+    });
+
+      for (const propriedade in dadosTabela.td[0]) {
+        const valorCelula = linha[propriedade];
+        
+        const celula = new Elemento({
+          tipo: "td",
+          textContent: valorCelula,
+        });
+        linhaTabela.novoElemento.appendChild(celula.gerarElemento());
       }
+    
+
+    tbody.novoElemento.appendChild(linhaTabela.gerarElemento());
+  });
+  if(dadosTabela.style){
+    let css='';
+    for(let style in dadosTabela.style){
+      css += `${style} : ${dadosTabela.style[style]}; `
     }
-    novoElemento.textContent = elemento.textContent
-    if(elemento.eventos){
-      for(let evento in elemento.eventos){
-        novoElemento.addEventListener(evento, elemento.eventos[evento])
-      }
-    }  
-    if(elemento.style){
-      let css='';
-      for(let style in elemento.style){
-        css += `${style} : ${elemento.style[style]}; `
-      }
-      novoElemento.setAttribute("style", css)
-    }  
-    return novoElemento;
+    tabela.novoElemento.setAttribute("style", css)
+  }  
+  tabela.novoElemento.appendChild(tbody.gerarElemento());
+
+  return tabela.gerarElemento();
 }
