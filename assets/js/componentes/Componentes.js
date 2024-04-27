@@ -1,5 +1,6 @@
+import * as tipo from "./TiposElementos.js";
 const container = {
-    tipo: 'div',
+    tipo: tipo.DIV,
     id: 'div-0',
     className: 'div-primary',
     style: {
@@ -17,7 +18,7 @@ const container = {
     }
   };
   const card = {
-    tipo: 'div',
+    tipo: tipo.DIV,
     id: 'div-1',
     style: {
       display: 'flex',
@@ -32,7 +33,7 @@ const container = {
     }
   };
   const botao = {
-    tipo: 'button',
+    tipo: tipo.BUTTON,
     id: 'btn-1',
     textContent: 'clique aqui',
     className: 'btn-primary',
@@ -44,7 +45,7 @@ const container = {
       'background-color': '#04AA6D',
       color: 'white',
     },
-    holver:{
+    hover:{
       colorin: "blue",
       colorout: '#04AA6D',
     },
@@ -57,7 +58,7 @@ const container = {
   };
   
   const label = {
-    tipo: 'label',
+    tipo: tipo.LABEL,
     id: 'label-1',
     for: 'input-1',
     textContent: 'Escreva aqui: ',
@@ -71,7 +72,7 @@ const container = {
     }
   };
   const input = {
-    tipo: 'input',
+    tipo: tipo.INPUT,
     id: 'input-1',
     name: 'input-1',
     textContent: 'Escreva aqui',
@@ -91,7 +92,7 @@ const container = {
   };
   
   const widget = {
-    tipo: 'button',
+    tipo: tipo.BUTTON,
     id: 'btn-007',
     textContent: '',
     placeholder: '',
@@ -121,7 +122,7 @@ const container = {
     }
   };
   const form ={
-    tipo: 'form',
+    tipo: tipo.FORM,
     id: 'form',
       style: {
         display: 'block',
@@ -132,7 +133,7 @@ const container = {
   }
   
   const table = {
-    tipo: 'table',
+    tipo: tipo.TABLE,
     id: 'div-1',
     className: 'div-primary',
       th: {

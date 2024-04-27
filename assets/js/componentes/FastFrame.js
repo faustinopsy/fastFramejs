@@ -1,4 +1,4 @@
-export default class Fabrica {
+export default class FastFrame {
     constructor(objeto) {
       this.objeto = objeto;
   
@@ -34,13 +34,13 @@ export default class Fabrica {
           this.novoElemento.addEventListener(evento, this.objeto.eventos[evento]);
         }
       }
-      if (this.objeto.holver) {
+      if (this.objeto.hover) {
         this.novoElemento.addEventListener("mouseover", () => {
-            this.novoElemento.style.backgroundColor = this.objeto.holver.colorin; 
+            this.novoElemento.style.backgroundColor = this.objeto.hover.colorin; 
         });
         
         this.novoElemento.addEventListener("mouseout", () => {
-            this.novoElemento.style.backgroundColor = this.objeto.holver.colorout;
+            this.novoElemento.style.backgroundColor = this.objeto.hover.colorout;
         });
       }
     }
