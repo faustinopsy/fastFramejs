@@ -1,8 +1,7 @@
-let container = {
+const container = {
     tipo: 'div',
     id: 'div-0',
     className: 'div-primary',
-    placeholder: '',
     style: {
       display: 'flex',
       'flex-wrap': 'wrap',
@@ -17,11 +16,9 @@ let container = {
       "box-shadow": '5px 30px 30px #888888',
     }
   };
-  let card = {
+  const card = {
     tipo: 'div',
     id: 'div-1',
-    className: 'div-primary',
-    placeholder: '',
     style: {
       display: 'flex',
       'flex-direction': 'row',
@@ -34,7 +31,7 @@ let container = {
       "box-shadow": '5px 30px 30px #888888',
     }
   };
-  let botao = {
+  const botao = {
     tipo: 'button',
     id: 'btn-1',
     textContent: 'clique aqui',
@@ -59,13 +56,28 @@ let container = {
     }
   };
   
-  let input = {
+  const label = {
+    tipo: 'label',
+    id: 'label-1',
+    for: 'input-1',
+    textContent: 'Escreva aqui: ',
+    style:{
+      width : '220px'
+    },
+    eventos: {
+      keyup: function(e){
+        console.log(e.target.value)
+      }
+    }
+  };
+  const input = {
     tipo: 'input',
     id: 'input-1',
+    name: 'input-1',
     textContent: 'Escreva aqui',
     className: 'input-primary',
     placeholder: 'Escreva aqui',
-    autocomplete: 'off',
+    autocompconste: 'off',
     autocapitalize: 'off',
     autocorrect: 'off',
     style:{
@@ -78,7 +90,7 @@ let container = {
     }
   };
   
-  let widget = {
+  const widget = {
     tipo: 'button',
     id: 'btn-007',
     textContent: '',
@@ -108,9 +120,18 @@ let container = {
       }
     }
   };
+  const form ={
+    tipo: 'form',
+    id: 'form',
+      style: {
+        display: 'block',
+        width: 'auto',
+        height: 'auto',
+        border: 'solid 2px red',
+      }
+  }
   
-  
-  let table = {
+  const table = {
     tipo: 'table',
     id: 'div-1',
     className: 'div-primary',
@@ -144,4 +165,4 @@ let container = {
       }
   };
 
-  export {container, card, input, botao, widget, table};
+  export {container, card,form, input,label, botao, widget, table};

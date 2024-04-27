@@ -1,5 +1,5 @@
 import {criaElemento, criaTabela } from "./componentes/CriaElemento.js";
-import {container, card, input, botao, widget, table } from "./componentes/Componentes.js";
+import {container, card,form, input,label, botao, widget, table } from "./componentes/Componentes.js";
 
 
 function fabrica(){
@@ -10,18 +10,22 @@ function fabrica(){
     className: table.className || "", 
     style: table.style || {} 
   };
-
+  
   const elementoTabela = criaTabela(meusDadosDaTabela);
   const novocontainer = criaElemento(container);
   const novocard = criaElemento(card);
   const novobotao = criaElemento(botao);
-  const novowidget = criaElemento(widget);
+  const novoform = criaElemento(form);
   const novoinput = criaElemento(input);
-  
+  const novolabel = criaElemento(label);
+  const novowidget = criaElemento(widget);
   
   novocard.appendChild(elementoTabela)
-  novocontainer.appendChild(novoinput)
-  novocontainer.appendChild(novobotao)
+  novoform.appendChild(novolabel)
+  novoform.appendChild(novoinput)
+  novoform.appendChild(novobotao)
+  novocontainer.appendChild(novoform)
+ 
   novocontainer.appendChild(novocard)
   
   document.body.appendChild(novocontainer)
