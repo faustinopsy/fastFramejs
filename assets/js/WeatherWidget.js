@@ -36,9 +36,10 @@ export default class WeatherWidget {
                     .then((res) => res.json())
                     .then((data) => {
                         const name = data.name;
-                        const { temp } = data.main;
+                        const { humidity,temp } = data.main;
                         const { speed } = data.wind;
-                        const info = `Local: ${name}<br>Temperatura: ${temp}°C<br>Velocidade do Vento: ${speed} m/s`;
+                        
+                        const info = `Local: ${name}<br>Aproximadamente: ${pos.coords.accuracy.toFixed(2)} Metros<br>Temperatura: ${temp}°C<br>Humidade do ar: ${humidity} % <br>Velocidade do Vento: ${speed} m/s`;
                         document.getElementById('weather-info').innerHTML = info;
                         this.modal.style.display = 'block';
                     });
