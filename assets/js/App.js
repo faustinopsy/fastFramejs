@@ -2,7 +2,7 @@ import * as fabricar from "./componentes/Fabrica.js";
 import * as elemento from "./componentes/Componentes.js";
 import * as semantico from "./HtmlSemantico.js";
 import adicionarMetaTagsSEO from "./componentes/MetaTags.js";
-
+import WeatherWidget from "./WeatherWidget.js";
 function fabricaDemo(){
   const meusDadosDaTabela = {
     th: elemento.table.th,
@@ -72,4 +72,6 @@ function fabricaSemantico(){
 }
 adicionarMetaTagsSEO();
 fabricaSemantico()
+const weatherWidget = new WeatherWidget();
+weatherWidget.getLocationAndWeather();
 //fabricaDemo()
