@@ -18,7 +18,7 @@ const footer = fabricaRodape();
 document.body.appendChild(navbar)
 document.body.appendChild(fabricaHome())
 document.body.appendChild(footer)
-
+document.body.style= "display: flex; justify-content: center;flex-direction: column; width: 80%; margin: 0 auto;"
 window.addEventListener('hashchange', function(){
   switch(this.location.hash){
     case '#home':

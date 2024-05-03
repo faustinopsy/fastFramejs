@@ -14,7 +14,7 @@ const footer = {
         background: 'lightgray',
         position: 'fixed',
         bottom: '0',
-        width: '100%',
+        width: '80%',
         clear: 'both',
         height: '60px',
     }
