@@ -1,5 +1,7 @@
 import * as elementTypes from "../componentes/TiposElementos.js";
 import * as fabricar from "../componentes/Fabrica.js";
+import fabricaForm from "./formulario/formulario.js";
+
 const estiloPadrao = {
     border: 'thick double #32a1ce',
     'box-sizing': 'border-box', 
@@ -93,12 +95,14 @@ const viewport = {
 };
 
 export function fabricaContato(){
+    const formulario = fabricaForm();
     const novomain = fabricar.criarContainer(main);
     const novoarticle = fabricar.criarContainer(article);
     const novosection1 = fabricar.criarContainer(section1);
     const novosection2 = fabricar.criarContainer(section2);
     const novoaside = fabricar.criarContainer(aside);
    
+    novosection1.appendChild(formulario)
     novoarticle.appendChild(novosection1)
     novoarticle.appendChild(novosection2)
     novomain.appendChild(novoarticle)

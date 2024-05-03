@@ -1,5 +1,7 @@
 import * as elementTypes from "../componentes/TiposElementos.js";
 import * as fabricar from "../componentes/Fabrica.js";
+import fabricaCEP from "./formulario/formCEP.js";
+
 const estiloPadrao = {
     border: '2px dashed orange',
     'box-sizing': 'border-box', 
@@ -91,6 +93,7 @@ const viewport = {
     content: "width=device-width, initial-scale=1.0", 
 };
 export  function fabricaSobre(){
+    const formulario = fabricaCEP();
     const novomain = fabricar.criarContainer(main);
     const novoarticle = fabricar.criarContainer(article);
     const novosection1 = fabricar.criarContainer(section1);
@@ -98,6 +101,7 @@ export  function fabricaSobre(){
     const novoaside = fabricar.criarContainer(aside);
    
     novoarticle.appendChild(novosection1)
+    novosection2.appendChild(formulario)
     novoarticle.appendChild(novosection2)
     novomain.appendChild(novoarticle)
     novomain.appendChild(novoaside)
