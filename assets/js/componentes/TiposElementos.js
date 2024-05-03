@@ -1,3 +1,4 @@
+export const BODY = 'body';
 export const DIV = 'div';
 export const BUTTON = 'button';
 export const LABEL = 'label';
@@ -14,4 +15,14 @@ export const ARTICLE = 'article';
 export const SECTION = 'section';
 export const ASIDE = 'aside';
 export const FOOTER = 'footer';
+export const IMG = 'img';
+export const H1 = 'h1';
+export const H2 = 'h2';
+export const H3 = 'h3';
+export const H4 = 'h4';
+export const H5 = 'h5';
+export const TITULO = 'title';
+export const META = 'meta';
+
+
 

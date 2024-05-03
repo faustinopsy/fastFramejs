@@ -1,3 +1,6 @@
+
+import * as tipo from "./componentes/TiposElementos.js";
+import * as fabricar from "./componentes/Fabrica.js";
 export default class WeatherWidget {
     constructor() {
         this.options = {
@@ -5,11 +8,44 @@ export default class WeatherWidget {
             timeout: 5000,
             maximumAge: 0,
         };
+        this.fabricaWidget()
         this.modal = this.createModal();
     }
-
+    fabricaWidget(){
+        const widget = {
+            tipo: tipo.BUTTON,
+            id: 'btn007',
+            textContent: '',
+            placeholder: '',
+            title : 'chat',
+            'aria-label': 'chat',
+            style:{
+              position:   'fixed',
+              top:   '30px',
+              right: '30px',
+              width: '230px',
+              height: '130px',
+              background: 'rgba(0, 0, 0, 0.5)',
+              'z-index': '99999',
+              'background-image': 'url()',
+              'background-size': 'cover',
+              'background-repeat': 'no-repeat',
+              color: 'white',
+              border: 'white',
+              'border-radius': '0px 20px 0 20px',
+              'box-shadow': '0 4px 8px rgba(0, 0, 0, 0.5)',
+              cursor: 'pointer',
+            },
+            eventos: {
+              click: function(){
+                alert('clicado')
+              }
+            }
+          };
+          return fabricar.criarBotao(widget)
+    }
     createModal() {
-        const modal = document.querySelector('#btn-007');
+        const modal = this.fabricaWidget()
         modal.classList.add('modal');
         modal.innerHTML = `
             <div class="modal-content">
