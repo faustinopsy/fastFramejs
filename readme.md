@@ -2,38 +2,38 @@
 ## FastFrame.js: Framework Embrionário para Criação Simplificada de Componentes em JavaScript
 
 **Introdução**
+> [!NOTE]
+> O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web > reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam > interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript.
 
-O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript.
-
-
-**Estrutura da classe**
-```
-export default class FastFrame {
-    constructor(objeto) {
-    }
-  
-    adicionarPropriedades() {
-    }
-  
-    adicionarTexto() {
-    }
-  
-    adicionarEventos() {
-    }
-  
-    adicionarEstilo() {
-    }
-  
-    gerarElemento() {
-      this.adicionarPropriedades();
-      this.adicionarTexto();
-      this.adicionarEventos();
-      this.adicionarEstilo();
-  
-      return this.novoElemento;
-    }
-  }
-```  
+> [!IMPORTANT]
+> **Estrutura da classe**
+> ```
+> export default class FastFrame {
+>     constructor(objeto) {
+>    }
+>   
+>     adicionarPropriedades() {
+>     }
+>   
+>     adicionarTexto() {
+>     }
+>   
+>     adicionarEventos() {
+>     }
+>   
+>     adicionarEstilo() {
+>     }
+>   
+>     gerarElemento() {
+>       this.adicionarPropriedades();
+>       this.adicionarTexto();
+>       this.adicionarEventos();
+>       this.adicionarEstilo();
+>   
+>       return this.novoElemento;
+>     }
+>   }
+> ```  
 
 
 
