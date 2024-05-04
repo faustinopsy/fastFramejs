@@ -166,4 +166,4 @@
 > Acreditamos que o `FastFrame.js` tem potencial para se tornar uma ferramenta popular e simples para a criação de interfaces web em JavaScript e somente com Javascript. Com o seu feedback e colaboração, podemos torná-lo ainda melhor!
 > 
 > 
-> O modelo da froma que está <img src='img/frame.PNG'>
+> Melhorias e avanços futuros é criar componentes CSS em javascript para importar nos componentes individuais, mantendo toda estrutura dentro do javascript.
