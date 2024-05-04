@@ -72,7 +72,7 @@ const botaoEnvia = {
     for: 'inputcep',
     textContent: 'Nome:',
     style:{
-      width : '220px',
+      width : '90%',
       color: 'white',
     },
   };
@@ -92,7 +92,7 @@ const botaoEnvia = {
     autocorrect: 'off',
     autofocus: 'true',
     style:{
-      width : '220px'
+      width : '90%'
     },
   };
 
@@ -100,7 +100,9 @@ const form ={
     tipo: elementTypes.FORM,
     id: 'form',
       style: {
-        display: 'block',
+        display: 'flex',
+      'flex-direction': 'column',
+      'justify-content': 'center',
         width: 'auto',
         height: 'auto',
         border: 'solid 2px red',

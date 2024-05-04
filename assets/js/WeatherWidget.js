@@ -49,7 +49,7 @@ export default class WeatherWidget {
         modal.classList.add('modal');
         modal.innerHTML = `
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="close" style="position:relative;left:100px;width:40px heigth:40px">&times;</span>
                 <p id="weather-info"></p>
             </div>
         `;

@@ -52,7 +52,7 @@ const botaoEnvia = {
     for: 'inputnome',
     textContent: 'Nome:',
     style:{
-      width : '220px',
+      width : '90%',
       color: 'white',
     },
   };
@@ -67,7 +67,7 @@ const botaoEnvia = {
     autocapitalize: 'off',
     autocorrect: 'off',
     style:{
-      width : '220px'
+      width : '90%'
     },
   };
   const labelemail = {
@@ -76,7 +76,7 @@ const botaoEnvia = {
     for: 'inputemail',
     textContent: 'E-Mail:',
     style:{
-      width : '220px',
+      width : '90%',
       color: 'white',
     },
   };
@@ -91,14 +91,16 @@ const botaoEnvia = {
     autocapitalize: 'off',
     autocorrect: 'off',
     style:{
-      width : '220px'
+      width : '90%'
     },
   };
 const form ={
     tipo: elementTypes.FORM,
     id: 'form',
       style: {
-        display: 'block',
+        display: 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
         width: 'auto',
         height: 'auto',
         border: 'solid 2px red',

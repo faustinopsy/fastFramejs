@@ -4,7 +4,6 @@ import fabricaRodape from "./paginas/footer/rodape.js";
 import {fabricaHome,metaTagsHome } from "./paginas/home.js";
 import {fabricaSobre,metaTagsSobre } from "./paginas/sobre.js";
 import {fabricaContato,metaTagsContato } from "./paginas/contato.js";
-import adicionarMetaTagsSEO from "./componentes/MetaTags.js";
 import WeatherWidget from "./WeatherWidget.js";
 import {fabricaDemo, fabricarWidget} from "./Demo.js";
 
