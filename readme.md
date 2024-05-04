@@ -3,7 +3,39 @@
 
 **Introdução**
 
-O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript .
+O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript.
+
+
+**Estrutura da classe**
+```
+export default class FastFrame {
+    constructor(objeto) {
+    }
+  
+    adicionarPropriedades() {
+    }
+  
+    adicionarTexto() {
+    }
+  
+    adicionarEventos() {
+    }
+  
+    adicionarEstilo() {
+    }
+  
+    gerarElemento() {
+      this.adicionarPropriedades();
+      this.adicionarTexto();
+      this.adicionarEventos();
+      this.adicionarEstilo();
+  
+      return this.novoElemento;
+    }
+  }
+```  
+
+
 
 **Fundamentos de Uso**
 
@@ -14,10 +46,15 @@ Para utilizar o `FastFrame.js`, siga estes passos:
 -   Defina um objeto JavaScript que represente o componente desejado, os modelos estão no arquivo componentes.
 -   Inclua propriedades como `tipo`, `id`, `className`, `textContent`, `eventos`, `style` e `holver` em um novo objeto.
 
-**Exemplo:**
+**Exemplo da criação de um botão e um form:**
+
 
 ```
-const meuBotao = {
+//arquivo formulario.js
+import * as elementTypes from "../../componentes/TiposElementos.js";
+import * as fabricar from "../../componentes/Fabrica.js";
+
+const botaoEnvia = {
   tipo: "button",
   textContent: "Clique aqui",
   className: "btn btn-primary",
@@ -32,7 +69,41 @@ const meuBotao = {
   },
 };
 
+const form ={
+    tipo: elementTypes.FORM,
+    id: 'form',
+      style: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'justify-content': 'center',
+        width: 'auto',
+        height: 'auto',
+        border: 'solid 2px red',
+      }
+  }
+
+  export default function fabricaForm(){
+    const novoform = fabricar.criarContainer(form);
+    const novobotaoEnvia = fabricar.criarContainer(botaoEnvia);
+   
+    novoform.appendChild(novobotaoEnvia)
+    
+    return novoform
+    
+  }
 ```
+
+
+```
+//arquivo contato.js:
+import fabricaForm from "./formulario.js";
+
+//adiciona no corpo o formulario com o botao já com stylo iline nele
+document.body.appendChild(fabricaForm())
+
+
+```
+
 
 **2. Importe e Utilize as Funções:**
 
