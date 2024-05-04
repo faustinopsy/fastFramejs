@@ -167,3 +167,5 @@
 > 
 > 
 > Melhorias e avanços futuros é criar componentes CSS em javascript para importar nos componentes individuais, mantendo toda estrutura dentro do javascript.
+> estou avalindo dois cénarios para o citado logo acima, 1º tem um componete que cria o css dentro dos compoente s na sua criação como funciona hoje, e 2º criar dinâmicamente em cada componete uma forma de criar no head da página o css semelhante ao css externo, mas sem ter css externo, pois este seria criado dinâmicamente quando o componete for criado.
+> sinta-se a vontade em colaborar com o projeto com ideias e códigos.
