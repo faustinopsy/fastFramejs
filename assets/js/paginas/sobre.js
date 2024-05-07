@@ -1,7 +1,7 @@
 import * as elementTypes from "../componentes/TiposElementos.js";
-import * as fabricar from "../componentes/Fabrica.js";
 import fabricaCEP from "./formulario/formCEP.js";
-
+import * as metaSobre from "./headmeta/metasobre.js";
+import * as fabricar from "../componentes/Fabrica.js";
 const estiloPadrao = {
     border: '2px dashed orange',
     'box-sizing': 'border-box', 
@@ -59,39 +59,7 @@ const aside = {
         border: 'dashed 2px'
     }
 };
-const titulo = {
-    tipo: elementTypes.TITULO,
-    textContent:'Página Sobre',
-};
-const metadescricao = {
-    tipo: elementTypes.META,
-    name:'description',
-    content:'Descrição da página Sobre',
-};
-const metaautor = {
-    tipo: elementTypes.META,
-    name:'author',
-    content:'Rodrigo Faustino',
-};
-const metakeywords = {
-    tipo: elementTypes.META,
-    name:'keywords',
-    content:'palavra, palavra, Sobre',
-};
-const metarobots = {
-    tipo: elementTypes.META,
-    name:'robots',
-    content:'index, follow',
-};
-const charset = {
-    tipo: elementTypes.META,
-    charset:'UTF-8',
-};
-const viewport = {
-    tipo: elementTypes.META,
-    name:'viewport',
-    content: "width=device-width, initial-scale=1.0", 
-};
+
 export  function fabricaSobre(){
     const formulario = fabricaCEP();
     const novomain = fabricar.criarContainer(main);
@@ -110,25 +78,7 @@ export  function fabricaSobre(){
     
   }
   export  function metaTagsSobre() {
-    const head = document.querySelector('head');
-    if (!head) {
-        console.error('Elemento <head> não encontrado no documento.');
-        return;
-    }
-    const viewportx = fabricar.criarContainer(viewport);
-    head.appendChild(viewportx);
-    const charsetx = fabricar.criarContainer(charset);
-    head.appendChild(charsetx);
-    const title = fabricar.criarContainer(titulo);
-    head.appendChild(title);
-    const descricao = fabricar.criarContainer(metadescricao); 
-    head.appendChild(descricao);
-    const autor = fabricar.criarContainer(metaautor); 
-    head.appendChild(autor);
-    const palavrasChaves = fabricar.criarContainer(metakeywords); 
-    head.appendChild(palavrasChaves);
-    const tagRobos = fabricar.criarContainer(metarobots); 
-    head.appendChild(tagRobos);
+    metaSobre()
 }
 
 
