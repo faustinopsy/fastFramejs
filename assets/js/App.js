@@ -9,17 +9,9 @@ import {fabricaDemo, fabricarWidget} from "./Demo.js";
 import {metaHome} from "./paginas/headmeta/metahome.js";
 import {metaContato} from "./paginas/headmeta/metacontato.js";
 import {metaSobre} from "./paginas/headmeta/metasobre.js";
-
+import {MonitorarPerformance} from "./componentes/MonitorarPerformance.js";
 //https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
-let observer = new PerformanceObserver((list) => {
-      for (const dados of list.getEntries()) {
-          console.log(`${dados.entryType} | ${dados.name}: ${dados.duration.toFixed(3)}ms`);
-      }
-  });
-  
-  observer.observe({
-      entryTypes : ['paint', 'mark', 'measure', 'navigation', 'resource', 'longtask']
-  });
+const monitor = new MonitorarPerformance();
   
 
 window.addEventListener('DOMContentLoaded', function(){
@@ -36,35 +28,35 @@ tela.home = fabricaHome()
 tela.sobre = fabricaSobre()
 tela.contato = fabricaContato()
 window.addEventListener('hashchange', function(){
-      medirPerformance('inicio');
+      monitor.medirPerformance('inicio');
   switch(this.location.hash){
     case '#home':
         removeMain()
         metaHome();
         document.body.insertBefore(tela.home,footer)
-        medirPerformance('fim');
-        mensurarPerformance('inicio', 'fim', 'Load Home Time');
+        monitor.medirPerformance('fim');
+        monitor.mensurarPerformance('inicio', 'fim', 'Load Home Time');
     break;
     case '#sobre':
           removeMain()
           metaSobre();
           document.body.insertBefore(tela.sobre,footer)
-          medirPerformance('fim');
-          mensurarPerformance('inicio', 'fim', 'Load sobre Time');
+          monitor.medirPerformance('fim');
+          monitor.mensurarPerformance('inicio', 'fim', 'Load sobre Time');
     break;
     case '#contato':
           removeMain();
           metaContato();
           document.body.insertBefore(tela.contato,footer)
-          medirPerformance('fim');
-        mensurarPerformance('inicio', 'fim', 'Load contato Time');
+          monitor.medirPerformance('fim');
+          monitor.mensurarPerformance('inicio', 'fim', 'Load contato Time');
     break;
     default: 
           removeMain();
           metaHome();
           document.body.insertBefore(fabricaHome(),footer)
-          medirPerformance('fim');
-          mensurarPerformance('inicio', 'fim', 'Load Home Time');
+          monitor.medirPerformance('fim');
+          monitor.mensurarPerformance('inicio', 'fim', 'Load Home Time');
   }
   
 })
@@ -75,16 +67,7 @@ function removeMain(){
           main.parentNode.removeChild(main);
       }
 }
-function medirPerformance(markName) {
-      performance.mark(markName);
-  }
-  
-  function mensurarPerformance(inicio, fim, nome) {
-      performance.measure(nome, inicio, fim);
-      const measure = performance.getEntriesByName(nome)[0];
-      console.log(`${nome}: ${measure.duration.toFixed(3)}ms`);
-  }
-  
+
 fabricarWidget()
 const weatherWidget = new WeatherWidget();
 weatherWidget.getLocationAndWeather();
