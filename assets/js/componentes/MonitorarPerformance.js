@@ -12,11 +12,11 @@ export class MonitorarPerformance {
       });
     }
   
-    marcar(marcarNome) {
+    medirPerformance(marcarNome) {
       performance.marcar(marcarNome);
     }
   
-    mensurar(inicio, fim, nome) {
+    mensurarPerformance(inicio, fim, nome) {
       performance.measure(nome, inicio, fim);
       const medir = performance.getEntriesByNome(nome)[0];
       console.log(`${nome}: ${medir.duration.toFixed(2)}ms`);
