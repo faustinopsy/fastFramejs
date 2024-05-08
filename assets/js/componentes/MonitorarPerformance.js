@@ -13,23 +13,23 @@ export class MonitorarPerformance {
     }
   
     medirPerformance(marcarNome) {
-      performance.marcar(marcarNome);
+      performance.mark(marcarNome);
     }
   
     mensurarPerformance(inicio, fim, nome) {
       performance.measure(nome, inicio, fim);
-      const medir = performance.getEntriesByNome(nome)[0];
+      const medir = performance.getEntriesByName(nome)[0];
       console.log(`${nome}: ${medir.duration.toFixed(2)}ms`);
-      this.clearmarcars(inicio, fim);
-      this.clearMeasure(nome);
+      this.clearmark(inicio, fim);
+      this.clearmark(nome);
     }
   
-    clearmarcars(inicio, fim) {
-      performance.clearmarcars(inicio);
-      performance.clearmarcars(fim);
+    clearmarcar(inicio, fim) {
+      performance.clearmark(inicio);
+      performance.clearmark(fim);
     }
   
-    clearMeasure(nome) {
+    clearmark(nome) {
       performance.clearMeasures(nome);
     }
   
