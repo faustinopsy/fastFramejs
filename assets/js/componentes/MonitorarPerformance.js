@@ -1,4 +1,4 @@
-class MonitorarPerformance {
+export class MonitorarPerformance {
     constructor() {
       this.observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
