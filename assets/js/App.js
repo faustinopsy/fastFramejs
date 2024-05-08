@@ -10,6 +10,18 @@ import {metaHome} from "./paginas/headmeta/metahome.js";
 import {metaContato} from "./paginas/headmeta/metacontato.js";
 import {metaSobre} from "./paginas/headmeta/metasobre.js";
 
+//https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
+let observer = new PerformanceObserver((list) => {
+      for (const dados of list.getEntries()) {
+          console.log(`${dados.entryType} | ${dados.name}: ${dados.duration.toFixed(3)}ms`);
+      }
+  });
+  
+  observer.observe({
+      entryTypes : ['paint', 'mark', 'measure', 'navigation', 'resource', 'longtask']
+  });
+  
+
 window.addEventListener('DOMContentLoaded', function(){
 
 const navbar = fabricaMenu();
@@ -24,34 +36,35 @@ tela.home = fabricaHome()
 tela.sobre = fabricaSobre()
 tela.contato = fabricaContato()
 window.addEventListener('hashchange', function(){
+      medirPerformance('inicio');
   switch(this.location.hash){
     case '#home':
-        perfomance(1)
         removeMain()
         metaHome();
         document.body.insertBefore(tela.home,footer)
-        perfomance(2)
+        medirPerformance('fim');
+        mensurarPerformance('inicio', 'fim', 'Load Home Time');
     break;
     case '#sobre':
-          perfomance(1)
           removeMain()
           metaSobre();
           document.body.insertBefore(tela.sobre,footer)
-          perfomance(2)
+          medirPerformance('fim');
+          mensurarPerformance('inicio', 'fim', 'Load sobre Time');
     break;
     case '#contato':
-          perfomance(1)
           removeMain();
           metaContato();
           document.body.insertBefore(tela.contato,footer)
-          perfomance(2)
+          medirPerformance('fim');
+        mensurarPerformance('inicio', 'fim', 'Load contato Time');
     break;
     default: 
-          perfomance(1)
           removeMain();
           metaHome();
           document.body.insertBefore(fabricaHome(),footer)
-          perfomance(2)
+          medirPerformance('fim');
+          mensurarPerformance('inicio', 'fim', 'Load Home Time');
   }
   
 })
@@ -62,16 +75,16 @@ function removeMain(){
           main.parentNode.removeChild(main);
       }
 }
-let t0;
-function perfomance(tempo){
-      if(tempo===1){
-            t0 = performance.now();
-      }
-      if(tempo===2){
-            let t1=performance.now()
-        console.log("tempo de carregamento " + (t1 - t0).toFixed(3) + " milliseconds.");
-      }
-}
+function medirPerformance(markName) {
+      performance.mark(markName);
+  }
+  
+  function mensurarPerformance(inicio, fim, nome) {
+      performance.measure(nome, inicio, fim);
+      const measure = performance.getEntriesByName(nome)[0];
+      console.log(`${nome}: ${measure.duration.toFixed(3)}ms`);
+  }
+  
 fabricarWidget()
 const weatherWidget = new WeatherWidget();
 weatherWidget.getLocationAndWeather();
