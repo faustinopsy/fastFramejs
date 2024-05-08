@@ -18,8 +18,6 @@ export class MonitorarPerformance {
   
     mensurarPerformance(inicio, fim, nome) {
       performance.measure(nome, inicio, fim);
-      const medir = performance.getEntriesByName(nome)[0];
-      console.log(`${nome}: ${medir.duration.toFixed(2)}ms`);
       this.clearmark(inicio, fim);
       this.clearmark(nome);
     }
