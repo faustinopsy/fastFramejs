@@ -64,9 +64,24 @@ export default class WeatherWidget {
     }
 
     getLocationAndWeather() {
+        const dia = new Date()
+        const data =  JSON.parse(localStorage.getItem('tempo')) ? JSON.parse(localStorage.getItem('tempo')) : dia.getHours()
+        const hora = data.hora
+        const condicao =  dia.getHours() > hora
+        console.log(condicao)
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const { latitude, longitude } = pos.coords;
+                if(condicao){
+                    const data =  JSON.parse(localStorage.getItem('tempo')) 
+                      const name = data.name;
+                      const { humidity,temp } = data.main;
+                      const { speed } = data.wind;
+                      
+                      const info = `Local: ${name}<br>Aproximadamente: ${pos.coords.accuracy.toFixed(2)} Metros<br>Temperatura: ${temp}°C<br>Humidade do ar: ${humidity} % <br>Velocidade do Vento: ${speed} m/s`;
+                      document.getElementById('weather-info').innerHTML = info;
+                      this.modal.style.display = 'block';
+                  }else{
                 const api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=75001f11037ddf2d94a9c85b0a7ab311`;
                 fetch(api)
                     .then((res) => res.json())
@@ -74,17 +89,20 @@ export default class WeatherWidget {
                         const name = data.name;
                         const { humidity,temp } = data.main;
                         const { speed } = data.wind;
-                        
+                        data.hora = dia.getHours()+8
+                        localStorage.setItem('tempo',JSON.stringify(data)) 
                         const info = `Local: ${name}<br>Aproximadamente: ${pos.coords.accuracy.toFixed(2)} Metros<br>Temperatura: ${temp}°C<br>Humidade do ar: ${humidity} % <br>Velocidade do Vento: ${speed} m/s`;
                         document.getElementById('weather-info').innerHTML = info;
                         this.modal.style.display = 'block';
                     });
+                }
             },
             (err) => {
                 console.warn(`ERROR(${err.code}): ${err.message}`);
             },
             this.options
         );
+     
     }
 }
 

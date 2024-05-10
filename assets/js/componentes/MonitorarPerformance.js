@@ -1,6 +1,7 @@
 export class MonitorarPerformance {
     constructor() {
       this.observer = new PerformanceObserver((list) => {
+        //console.log(list.getEntries())
         for (const entry of list.getEntries()) {
           const entryTypeTranslated = this.traduzirEntrada(entry.entryType);
           console.log(`${entryTypeTranslated} | ${entry.name}: ${entry.duration.toFixed(2)}ms`);
