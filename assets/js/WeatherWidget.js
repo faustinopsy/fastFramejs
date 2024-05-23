@@ -59,10 +59,35 @@ export default class WeatherWidget {
         closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
         });
-
+        this.makeDraggable(modal)
         return modal;
     }
-
+    makeDraggable(element) {
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+    
+        element.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - element.getBoundingClientRect().left;
+            offsetY = e.clientY - element.getBoundingClientRect().top;
+            element.style.cursor = 'grabbing';
+        });
+    
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                element.style.left = e.clientX - offsetX + 'px';
+                element.style.top = e.clientY - offsetY + 'px';
+                element.style.right = 'auto'; 
+                element.style.bottom = 'auto'; 
+            }
+        });
+    
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            element.style.cursor = 'grab';
+        });
+    }
     getLocationAndWeather() {
         const dia = new Date()
         const data =  JSON.parse(localStorage.getItem('tempo')) ? JSON.parse(localStorage.getItem('tempo')) : dia.getHours()
