@@ -59,10 +59,10 @@ export default class WeatherWidget {
         closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
         });
-        this.makeDraggable(modal)
+        this.moverWidget(modal)
         return modal;
     }
-    makeDraggable(element) {
+    moverWidget(element) {
         let isDragging = false;
         let offsetX = 0;
         let offsetY = 0;
