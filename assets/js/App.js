@@ -29,6 +29,8 @@ document.body.appendChild(footer)
 document.body.style= "display: flex; justify-content: center;flex-direction: column; width: 80%; margin: 0 auto;"
 
 let tela = {}
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 const worker = new Worker('./worker.js');
 worker.postMessage({ type: 'fetchData' });
 
@@ -46,6 +48,8 @@ worker.addEventListener('message', async (event) => {
     console.error('Erro ao buscar estruturas:', error);
   }
 });
+
+
 window.addEventListener('hashchange', function(){
   switch(this.location.hash){
     case '#home':

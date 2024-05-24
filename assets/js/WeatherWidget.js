@@ -92,7 +92,7 @@ export default class WeatherWidget {
         const dia = new Date()
         const data =  JSON.parse(localStorage.getItem('tempo')) ? JSON.parse(localStorage.getItem('tempo')) : dia.getHours()
         const hora = data.hora
-        const condicao =  true
+        const condicao =  false
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const { latitude, longitude } = pos.coords;

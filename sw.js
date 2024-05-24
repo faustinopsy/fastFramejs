@@ -1,4 +1,4 @@
-const CACHE_NAME = 'app-cache-v12';
+const CACHE_NAME = 'app-cache-v13';
 const STATIC_ASSETS = [
     './index.html',
 
@@ -27,57 +27,69 @@ const recursos = [
 ];
 self.addEventListener('install', event => {
   event.waitUntil(
-      caches.open(CACHE_NAME).then(async cache => {
-          try {
-              await cache.addAll(STATIC_ASSETS);
-              const fetchPromises = recursos.map(url => fetch(url));
-              const responses = await Promise.allSettled(fetchPromises);
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        await cache.addAll(STATIC_ASSETS);
+        
+        // cada fetch será armazenado
+        const fetchPromises = recursos.map(url => fetch(url));
+        const responses = await Promise.allSettled(fetchPromises);
+        
+        const falhaurl = [];
+        for (let i = 0; i < responses.length; i++) {
+          const response = responses[i];
+          if (response.status === 'fulfilled' && response.value.ok) {
+            await cache.put(recursos[i], response.value);
+          } else {
+            falhaurl.push(recursos[i]);
+          }
+        }
 
-              const falhaurl = [];
-
-              for (let i = 0; i < responses.length; i++) {
-                  const response = responses[i];
-                  if (response.status === 'fulfilled' && response.value.ok) {
-                      await cache.put(recursos[i], response.value);
-                  } else {
-                      falhaurl.push(recursos[i]);
-                  }
-              }
-
-              if (falhaurl.length > 0) {
-                  console.error('Erro durante o cache.addAll: ', falhaurl);
-              }
-                } catch (error) {
-                    console.error("Erro durante o cache.addAll: ", error);
-                    throw error;
-                }
-      })
+        if (falhaurl.length > 0) {
+          console.error('Erro durante o cache.addAll: ', falhaurl);
+        }
+      } catch (error) {
+        console.error("Erro durante o cache.addAll: ", error);
+        throw error;
+      }
+    })()
   );
 });
-  
-
 
 self.addEventListener('fetch', event => {
-  event.respondWith(async function() {
-    const cachedResponse = await caches.match(event.request);
-    if (cachedResponse) return cachedResponse;
+  const url = new URL(event.request.url);
+  if (url.pathname === '/json/home.json' ||
+      url.pathname === '/json/sobre.json' ||
+      url.pathname === '/json/contato.json') {
+    return;
+  }
 
-    const response = await event.preloadResponse;
-    if (response) return response;
-    
-    return fetch(event.request).then(networkResponse => {
-        if (networkResponse.ok) {
-            return caches.open(CACHE_NAME).then(cache => {
-                cache.put(event.request, networkResponse.clone());
-                return networkResponse;
-            });
+  event.respondWith(
+    (async function() {
+      //cache 1º
+      const cachedResponse = await caches.match(event.request);
+      if (cachedResponse) return cachedResponse;
+      //preload 2º
+      const preloadResponse = await event.preloadResponse;
+      if (preloadResponse) return preloadResponse;
+
+      try {  //rede 3º
+        const networkResponse = await fetch(event.request);
+        if (networkResponse && networkResponse.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
         }
-        return caches.match('offline.html'); 
-    }).catch(() => {
-        return caches.match('offline.html'); 
-    });
-  }());
-});    
+
+        return caches.match('offline.html');
+      } catch (error) {
+        return caches.match('index.html');
+      }
+    })()
+  );
+});
+ 
     
 
 // self.addEventListener('fetch', function(event) {
