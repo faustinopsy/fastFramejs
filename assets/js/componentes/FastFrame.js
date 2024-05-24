@@ -1,3 +1,4 @@
+import funcoes from "./funcoes.js";
 export default class FastFrame {
     constructor(objeto) {
       this.objeto = objeto;
@@ -32,7 +33,11 @@ export default class FastFrame {
     adicionarEventos() {
       if (this.objeto.eventos) {
         for (const evento in this.objeto.eventos) {
-          this.novoElemento.addEventListener(evento, this.objeto.eventos[evento]);
+          if(funcoes[this.objeto.eventos[evento]]){
+            this.novoElemento.addEventListener(evento, funcoes[this.objeto.eventos[evento]]);
+          }else{
+            console.log(`evento ${this.objeto.eventos[evento]} nao econtrado`)
+          }
         }
       }
       if (this.objeto.hover) {

@@ -5,8 +5,6 @@ const estiloPadrao = {
     'box-sizing': 'border-box', 
 };
 
-
-
 const footer = {
     tipo: elementTypes.FOOTER,
     style: {

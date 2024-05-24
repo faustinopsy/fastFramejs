@@ -37,33 +37,7 @@ const botaoEnvia = {
       colorout: '#04AA6D',
     },
     eventos: {
-      click: async function(e){
-        e.preventDefault()
-        const cep = document.querySelector('#inputcep').value
-        if(cep==='' || !Number(cep)) {
-          alert("preencha o campo com números")
-          document.querySelector('#inputcep').value=''
-          return
-        }
-       
-        const cepx = await buscaCep(cep)
-        console.log(
-          ` 
-          cep: ${cepx.cep} ,
-          logradouro: ${cepx.logradouro} ,
-          complemento: ${cepx.complemento} ,
-          bairro: ${cepx.bairro} ,
-          localidade: ${cepx.localidade} ,
-          uf: ${cepx.uf} ,
-          ibge: ${cepx.ibge} ,
-          gia: ${cepx.gia} ,
-          ddd: ${cepx.ddd} ,
-          siafi: ${cepx.siafi} 
-          ` 
-      
-      )
-        alert('dados no console')
-      }
+      click: "fnCEP"
     }
   }; 
   const labelcep = {

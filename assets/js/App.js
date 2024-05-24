@@ -4,7 +4,6 @@ import { fabricaHome } from "./paginas/home.js";
 import { fabricaSobre } from "./paginas/sobre.js";
 import { fabricaContato } from "./paginas/contato.js";
 import WeatherWidget from "./WeatherWidget.js";
-import { fabricaDemo, fabricarWidget } from "./Demo.js";
 import { metaHome } from "./paginas/headmeta/metahome.js";
 import { metaContato } from "./paginas/headmeta/metacontato.js";
 import { metaSobre } from "./paginas/headmeta/metasobre.js";
@@ -12,11 +11,7 @@ import { MonitorarPerformance } from "./componentes/MonitorarPerformance.js";
 
 //https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 const monitor = new MonitorarPerformance();
-window.addEventListener('load', () => {
-    for (const key of ['fetchStart', 'connectStart', 'connectEnd', 'requestStart', 'responseStart', 'responseEnd', 'domComplete']) {
-        console.log(key, performance.timing[key] - performance.timing.navigationStart);
-    }
-});
+
 //padrao de projeto COmmand
 //https://pt.wikipedia.org/wiki/Command
 class PJCommand {
@@ -30,11 +25,11 @@ const worker = new Worker('./worker.js');
 worker.postMessage({ type: 'fetchData' });
 
 window.addEventListener('DOMContentLoaded', function () {
-    const navbar = fabricaMenu();
-    const footer = fabricaRodape();
+    let navbar = null;
+    let footer = null; 
     let tela = {};
-    document.body.appendChild(navbar);
-    document.body.appendChild(footer);
+    //document.body.appendChild(navbar);
+    
     document.body.style = "display: flex; justify-content: center; flex-direction: column; width: 80%; margin: 0 auto;";
 
     
@@ -61,9 +56,13 @@ const PJCommands = {
 
 worker.addEventListener('message', async (event) => {
       const { type, data, error } = event.data;
-
       if (type === 'dadosJson') {
-      const { home, sobre, contato } = data;
+      const {menu, home, sobre, contato } = data;
+      navbar = fabricaMenu(menu);
+      document.body.insertBefore(navbar,document.querySelector("main"));
+      footer = fabricaRodape();
+      document.body.appendChild(footer);
+
       tela.home = await fabricaHome(home);
       tela.sobre = await fabricaSobre(sobre);
       tela.contato = await fabricaContato(contato);
@@ -89,7 +88,8 @@ function removeMain() {
       }
 }
 
-fabricarWidget();
+
 const weatherWidget = new WeatherWidget();
 weatherWidget.getLocationAndWeather();
+
 });

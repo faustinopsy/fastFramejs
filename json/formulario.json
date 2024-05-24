@@ -34,8 +34,10 @@
       "hover":{
         "colorin": "blue",
         "colorout": "#04AA6D"
+      },
+      "eventos": {
+        "click": "btnForm"
       }
-      
     },
      "labelnome": {
      "tipo": "label",

@@ -35,11 +35,6 @@ export default class WeatherWidget {
               'border-radius': '0px 20px 0 20px',
               'box-shadow': '0 4px 8px rgba(0, 0, 0, 0.5)',
               cursor: 'pointer',
-            },
-            eventos: {
-              click: function(){
-                alert('clicado')
-              }
             }
           };
           return fabricar.criarBotao(widget)

@@ -5,7 +5,7 @@ import * as fabricar from "../componentes/Fabrica.js";
 
 
 export async function fabricaHome(fetchDados){
-    const { main, article, section1, section2, aside, imagem } = fetchDados;
+    const { article,aside,estiloPadrao,imagem,main,section1,section2 } = fetchDados;
     const novomain = fabricar.criarContainer(main);
     const article0 = fabricar.criarContainer(article);
     const imagemSrc = fabricar.criarContainer(imagem);

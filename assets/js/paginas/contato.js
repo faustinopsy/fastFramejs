@@ -5,9 +5,9 @@ import * as fabricar from "../componentes/Fabrica.js";
 
 
 export async function fabricaContato(fetchDados){
-    const { main, article, section1, section2, aside, imagem, form } = fetchDados;
+    const { main, article, section1, section2, aside, imagem } = fetchDados;
   
-    const formulario = fabricaForm(form);
+    const formulario = fabricaForm(section2.conteudo);
     const novomain = fabricar.criarContainer(main);
     const article0 = fabricar.criarContainer(article);
     const imagemSrc = fabricar.criarContainer(imagem);

@@ -59,11 +59,11 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  if (url.pathname === '/json/home.json' ||
-      url.pathname === '/json/sobre.json' ||
-      url.pathname === '/json/contato.json') {
-    return;
-  }
+  // if (url.pathname === '/json/home.json' ||
+  //     url.pathname === '/json/sobre.json' ||
+  //     url.pathname === '/json/contato.json') {
+  //   return;
+  // }
 
   event.respondWith(
     (async function() {

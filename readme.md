@@ -3,7 +3,12 @@
 
 **Introdução**
 > [!NOTE]
-> O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web > reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam > interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript.
+> O `FastFrame.js` é um framework embrionário em JavaScript que visa simplificar a criação de componentes web reutilizáveis e modulares. Através de uma abordagem leve e intuitiva, ele permite que desenvolvedores construam  interfaces dinâmicas e consistentes com menos código e mais facilidade, aproveitando o poder da linguagem JavaScript onde podemos criar o Html e o Css diretamente pelo JavaScript.
+> A forma que os objetos eram criados foram transferidos para arquivos json que estão na pasta json na raiz do projeto, isso foi feito para utilizar o web work e nele manter a lógica que faz as requisições paralelas e criam os objetos que serão utilizados no arquivo App.js.
+> O modelo atual mostra uma página simples com três páginas no padrão SPA onde os conteudos internos das páginas são criados pela estrutura no arquivo json, isso possibilita a flexibilidade de manuntenção e utiliza a estratégia de cache utilizando o service work, então o uso do web work e service work em conjunto faz o wepapp carregar rapidamente dando ao usuario uma boa experiência de usabilidade.
+> esse projeto é apenas um modelo que poderá ser expandido.
+
+
 
 > [!IMPORTANT]
 > **Estrutura da classe**
@@ -50,7 +55,7 @@
 > 
 > 
 > ```
-> //arquivo formulario.js
+> //arquivo formulario.js 
 > import * as elementTypes from "../../componentes/TiposElementos.js";
 > import * as fabricar from "../../componentes/Fabrica.js";
 > 
