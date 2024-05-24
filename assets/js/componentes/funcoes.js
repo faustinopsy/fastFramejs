@@ -18,28 +18,30 @@ const funcoes = {
     fnCEP: async function(e){
         e.preventDefault()
         const cep = document.querySelector('#inputcep').value
+        const form  = document.querySelector('#formcep')
         if(cep==='' || !Number(cep)) {
           alert("preencha o campo com números")
           document.querySelector('#inputcep').value=''
           return
         }
+
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
         const json = await response.json();
-        console.log(
-          ` 
-          cep: ${json.cep} ,
-          logradouro: ${json.logradouro} ,
-          complemento: ${json.complemento} ,
-          bairro: ${json.bairro} ,
-          localidade: ${json.localidade} ,
-          uf: ${json.uf} ,
-          ibge: ${json.ibge} ,
-          gia: ${json.gia} ,
-          ddd: ${json.ddd} ,
-          siafi: ${json.siafi} 
-          ` 
-      )
-        alert('dados no console')
+        const divx = document.createElement('div')
+        divx.innerHTML = ` 
+        cep: ${json.cep}, <br>
+        logradouro: ${json.logradouro},<br>
+        complemento: ${json.complemento}, <br>
+        bairro: ${json.bairro}, <br>
+        localidade: ${json.localidade}, <br>
+        uf: ${json.uf}, <br>
+        ibge: ${json.ibge}, <br>
+        gia: ${json.gia}, <br>
+        ddd: ${json.ddd}, <br>
+        siafi: ${json.siafi}<br> 
+        ` 
+        form.appendChild(divx)
+        
       }
 }
 export default funcoes;

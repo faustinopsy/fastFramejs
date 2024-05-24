@@ -72,7 +72,7 @@ const botaoEnvia = {
 
 const form ={
     tipo: elementTypes.FORM,
-    id: 'form',
+    id: 'formcep',
       style: {
         display: 'flex',
       'flex-direction': 'column',
@@ -82,11 +82,7 @@ const form ={
         border: 'solid 2px red',
       }
   }
-  async function buscaCep(cep){
-    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    const json = await response.json();
-    return json
-  }
+
 export default function fabricaCEP(){
     const novoform = fabricar.criarContainer(form);
     const novocard = fabricar.criarContainer(card);

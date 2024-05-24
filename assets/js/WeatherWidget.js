@@ -26,7 +26,7 @@ export default class WeatherWidget {
               width: '230px',
               height: '130px',
               background: 'rgba(0, 0, 0, 0.5)',
-              'z-index': '99999',
+              'z-index': '99998',
               'background-image': 'url()',
               'background-size': 'cover',
               'background-repeat': 'no-repeat',
