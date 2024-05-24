@@ -33,7 +33,6 @@ const ul = {
     style: {
         ...estiloPadrao,
         'list-style': 'none',
-       
         margin: '0', 
         flex: '1', 
     }

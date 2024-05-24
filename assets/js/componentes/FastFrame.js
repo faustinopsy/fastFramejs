@@ -15,7 +15,8 @@ export default class FastFrame {
           propriedade !== "tipo" &&
           propriedade !== "eventos" &&
           propriedade !== "textContent" &&
-          propriedade !== "style"
+          propriedade !== "style" &&
+          propriedade !== "hover"
         ) {
           this.novoElemento.setAttribute(propriedade, this.objeto[propriedade]);
         }

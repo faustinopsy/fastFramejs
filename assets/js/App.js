@@ -12,7 +12,11 @@ import {metaSobre} from "./paginas/headmeta/metasobre.js";
 import {MonitorarPerformance} from "./componentes/MonitorarPerformance.js";
 //https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 const monitor = new MonitorarPerformance();
-  
+window.addEventListener('load', () => {
+      for (const key of ['fetchStart', 'connectStart', 'connectEnd', 'requestStart', 'responseStart', 'responseEnd', 'domComplete']) {
+        console.log(key, performance.timing[key] - performance.timing.navigationStart);
+      }
+    });
 
 window.addEventListener('DOMContentLoaded', function(){
 
@@ -20,43 +24,49 @@ const navbar = fabricaMenu();
 const footer = fabricaRodape();
 
 document.body.appendChild(navbar)
-document.body.appendChild(fabricaHome())
+
 document.body.appendChild(footer)
 document.body.style= "display: flex; justify-content: center;flex-direction: column; width: 80%; margin: 0 auto;"
+
 let tela = {}
-tela.home = fabricaHome()
-tela.sobre = fabricaSobre()
-tela.contato = fabricaContato()
+const worker = new Worker('./worker.js');
+worker.postMessage({ type: 'fetchData' });
+
+worker.addEventListener('message', async (event) => {
+  const { type, data, error } = event.data;
+
+  if (type === 'dadosJson') {
+    const { home, sobre, contato } = data;
+    tela.home = await fabricaHome(home);
+    tela.sobre = await fabricaSobre(sobre);
+    tela.contato = await fabricaContato(contato);
+    
+    document.body.insertBefore(tela.home, footer);
+  } else if (type === 'error') {
+    console.error('Erro ao buscar estruturas:', error);
+  }
+});
 window.addEventListener('hashchange', function(){
-      monitor.medirPerformance('inicio');
   switch(this.location.hash){
     case '#home':
         removeMain()
         metaHome();
         document.body.insertBefore(tela.home,footer)
-        monitor.medirPerformance('fim');
-        monitor.mensurarPerformance('inicio', 'fim', 'Load Home Time');
     break;
     case '#sobre':
           removeMain()
           metaSobre();
           document.body.insertBefore(tela.sobre,footer)
-          monitor.medirPerformance('fim');
-          monitor.mensurarPerformance('inicio', 'fim', 'Load sobre Time');
     break;
     case '#contato':
           removeMain();
           metaContato();
           document.body.insertBefore(tela.contato,footer)
-          monitor.medirPerformance('fim');
-          monitor.mensurarPerformance('inicio', 'fim', 'Load contato Time');
     break;
     default: 
           removeMain();
           metaHome();
           document.body.insertBefore(fabricaHome(),footer)
-          monitor.medirPerformance('fim');
-          monitor.mensurarPerformance('inicio', 'fim', 'Load Home Time');
   }
   
 })

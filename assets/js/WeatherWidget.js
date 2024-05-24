@@ -92,8 +92,7 @@ export default class WeatherWidget {
         const dia = new Date()
         const data =  JSON.parse(localStorage.getItem('tempo')) ? JSON.parse(localStorage.getItem('tempo')) : dia.getHours()
         const hora = data.hora
-        const condicao =  dia.getHours() > hora
-        console.log(condicao)
+        const condicao =  true
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const { latitude, longitude } = pos.coords;
@@ -114,7 +113,7 @@ export default class WeatherWidget {
                         const name = data.name;
                         const { humidity,temp } = data.main;
                         const { speed } = data.wind;
-                        data.hora = dia.getHours()+8
+                        data.hora = dia.getHours()
                         localStorage.setItem('tempo',JSON.stringify(data)) 
                         const info = `Local: ${name}<br>Aproximadamente: ${pos.coords.accuracy.toFixed(2)} Metros<br>Temperatura: ${temp}°C<br>Humidade do ar: ${humidity} % <br>Velocidade do Vento: ${speed} m/s`;
                         document.getElementById('weather-info').innerHTML = info;
