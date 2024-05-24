@@ -1,0 +1,100 @@
+{
+  "estiloPadrao": {
+      "border": "2px dashed orange",
+      "box-sizing": "border-box"
+  },
+  "card": {
+     "tipo": "div",
+     "id": "div1",
+      "style": {
+        "display": "flex",
+        "flex-direction": "row",
+        "justify-content": "center",
+        "width": "auto",
+        "height": "auto",
+        "background-color": "#2196f345",
+        "backdrop-filter" : "blur(5px)",
+        "border": "solid 2px red",
+        "box-shadow": "5px 30px 30px #888888"
+      }
+    },
+  "botaoEnvia": {
+     "tipo": "button",
+     "id": "btn1",
+     "textContent": "clique aqui",
+      "className": "btn-primary",
+      "placeholder": "clique aqui",
+      "style":{
+        "width": "80px",
+        "transition-duration": "0.4s",
+        "cursor": "pointer", 
+        "background-color": "#04AA6D",
+        "color": "white"
+      },
+      "hover":{
+        "colorin": "blue",
+        "colorout": "#04AA6D"
+      }
+      
+    },
+     "labelnome": {
+     "tipo": "label",
+     "id": "label1",
+     "for": "inputnome",
+     "textContent": "Nome:",
+      "style":{
+        "width": "90%",
+        "color": "white"
+      }
+    },
+      "inputnome": {
+      "tipo": "input",
+      "id": "inputnome",
+      "name": "inputnome",
+      "textContent": "Seu nome",
+      "className": "input-primary",
+      "placeholder": "Escreva seu nome",
+      "autocompconste": "off",
+      "autocapitalize": "off",
+      "autocorrect": "off",
+      "style":{
+        "width": "90%"
+      }
+    },
+     "labelemail": {
+     "tipo": "label",
+     "id": "label1",
+     "for": "inputemail",
+     "textContent": "E-Mail:",
+      "style":{
+        "width": "90%",
+        "color": "white"
+      }
+    },
+     "inputemail": {
+     "tipo": "input",
+     "id": "inputemail",
+     "name": "inputemail",
+     "textContent": "Seu nome",
+     "className": "input-primary",
+     "placeholder": "Escreva seu EMail",
+     "autocompconste": "off",
+     "autocapitalize": "off",
+     "autocorrect": "off",
+     "style":{
+        "width": "90%"
+      }
+    },
+  "form":{
+     "tipo": "form",
+     "id": "form",
+        "style": {
+          "display": "flex",
+          "flex-direction": "column",
+          "justify-content": "center",
+          "width": "auto",
+          "height": "auto",
+          "border": "solid 2px red"
+        }
+    }
+}

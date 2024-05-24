@@ -52,7 +52,7 @@ const PJCommands = {
         metaContato
     ),
     'default': new PJCommand(
-        async () => document.body.insertBefore(await fabricaHome(), footer),
+        async () => document.body.insertBefore(tela.home, footer),
         metaHome
     )
 };
@@ -67,8 +67,8 @@ worker.addEventListener('message', async (event) => {
       tela.home = await fabricaHome(home);
       tela.sobre = await fabricaSobre(sobre);
       tela.contato = await fabricaContato(contato);
-      
-      PJCommands[location.hash].execute();
+      const PJCommand = PJCommands[location.hash] || PJCommands['default'];
+      PJCommand.execute();
       } else if (type === 'error') {
       console.error('Erro ao buscar estruturas:', error);
       }

@@ -44,6 +44,9 @@
         "background": "lightsalmon",
         "width": "40%",
         "height": "300px"
+      },
+      "conteudo":{
+        "json":"./json/formulario.json"
       }
     },
     "aside": {
@@ -69,4 +72,3 @@
       }
     }
   }
-  
