@@ -1,9 +1,9 @@
 <?php
-define('JSON_DIR', __DIR__ . '/json/');
+define('JSON_DIR',  '../json/');
 
-if (!is_dir(JSON_DIR)) {
-    mkdir(JSON_DIR, 0777, true);
-}
+// if (!is_dir(JSON_DIR)) {
+//     mkdir(JSON_DIR, 0777, true);
+// }
 
 function carregarJson($filename) {
     $filepath = JSON_DIR . $filename;
@@ -127,112 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Editor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 800px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        main {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        form {
-            margin: 20px;
-            padding: 20px;
-        }
-        label {
-            font-weight: bold;
-            color: #555;
-        }
-        input[type="file"],
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        textarea {
-            resize: vertical;
-            background-color: black;
-            color: white;
-        }
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .message {
-            text-align: center;
-            color: red;
-        }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('formulario_json');
-            const jsonData = document.getElementById('dados_json');
-
-            function validarJson(jsonString) {
-                try {
-                    jsonlint.parse(jsonString);
-                    return true;
-                } catch (e) {
-                    const errorMessage = e.message;
-                    const match = errorMessage.match(/line (\d+)/);
-                    if (match) {
-                        const lineNumber = match[1];
-                        alert(`Erro de JSON na linha ${lineNumber}: ${errorMessage}`);
-                    } else {
-                        alert(`Erro de JSON: ${errorMessage}`);
-                    }
-                    return false;
-                }
-            }
-
-            function validarFormulario() {
-                if (!validarJson(jsonData.value)) {
-                    jsonData.style.border = '2px solid red';
-                    return false;
-                }
-                jsonData.style.border = '2px solid green';
-                return true;
-            }
-
-            jsonData.addEventListener('blur', validarFormulario);
-            form.addEventListener('submit', function(e) {
-                if (!validarFormulario()) {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="jsonlint.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -249,11 +145,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="filename" id="filename" value="<?php echo htmlspecialchars($filename ?? 'novo_arquivo.json'); ?>">
 
                 <label for="dados_json">Conteúdo do JSON:</label>
-                <textarea name="dados_json" id="dados_json" rows="20" cols="100"><?php echo json_encode($jsonData, JSON_PRETTY_PRINT); ?></textarea>
-                
+                <div class="textarea-container">
+                    <div class="linhaNumeros" id="linhaNumeros"></div>
+                    <textarea name="dados_json" id="dados_json" rows="20" cols="100"><?php echo json_encode($jsonData, JSON_PRETTY_PRINT); ?></textarea>
+                </div>
                 <button type="submit" name="salvar_json">Salvar JSON</button>
             </form>
         </main>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
