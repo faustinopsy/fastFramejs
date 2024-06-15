@@ -12,6 +12,9 @@ import { MonitorarPerformance } from "./componentes/MonitorarPerformance.js";
 //https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver
 const monitor = new MonitorarPerformance();
 
+const worker = new Worker('./worker.js');
+worker.postMessage({ type: 'fetchData' });
+
 //padrao de projeto COmmand
 //https://pt.wikipedia.org/wiki/Command
 class PJCommand {
@@ -21,8 +24,7 @@ class PJCommand {
     }
 }
 
-const worker = new Worker('./worker.js');
-worker.postMessage({ type: 'fetchData' });
+
 
 window.addEventListener('DOMContentLoaded', function () {
     let navbar = null;
