@@ -1,8 +1,5 @@
-import * as elementTypes from "../componentes/TiposElementos.js";
 import * as metaHome from "./headmeta/metahome.js";
-import * as fabricar from "../componentes/Fabrica.js";
-
-
+import * as fabricar from "../core/Fabrica.js";
 
 export async function fabricaHome(fetchDados){
     const { article,aside,estiloPadrao,imagem,main,section1,section2 } = fetchDados;

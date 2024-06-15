@@ -1,11 +1,10 @@
-import * as elementTypes from "../../componentes/TiposElementos.js";
-import * as fabricar from "../../componentes/Fabrica.js";
+import * as fabricar from "../../core/Fabrica.js";
 const estiloPadrao = {
     border: '2px dashed orange',
     'box-sizing': 'border-box', 
 };
 const card = {
-    tipo: elementTypes.DIV,
+    tipo: 'div',
     id: 'div1',
     style: {
       display: 'flex',
@@ -20,7 +19,7 @@ const card = {
     }
   };
 const botaoEnvia = {
-    tipo: elementTypes.BUTTON,
+    tipo: 'button',
     id: 'btn1',
     textContent: 'clique aqui',
     className: 'btn-primary',
@@ -41,7 +40,7 @@ const botaoEnvia = {
     }
   }; 
   const labelcep = {
-    tipo: elementTypes.LABEL,
+    tipo: 'label',
     id: 'label1',
     for: 'inputcep',
     textContent: 'Nome:',
@@ -51,7 +50,7 @@ const botaoEnvia = {
     },
   };
   const inputcep = {
-    tipo: elementTypes.INPUT,
+    tipo: 'input',
     id: 'inputcep',
     name: 'inputcep',
     pattern: '\d{8,8}',
@@ -71,7 +70,7 @@ const botaoEnvia = {
   };
 
 const form ={
-    tipo: elementTypes.FORM,
+    tipo: 'form',
     id: 'formcep',
       style: {
         display: 'flex',

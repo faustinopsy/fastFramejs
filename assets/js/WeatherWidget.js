@@ -1,6 +1,6 @@
 
 import * as tipo from "./componentes/TiposElementos.js";
-import * as fabricar from "./componentes/Fabrica.js";
+import * as fabricar from "./core/Fabrica.js";
 export default class WeatherWidget {
     constructor() {
         this.options = {

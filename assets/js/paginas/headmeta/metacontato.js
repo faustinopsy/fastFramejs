@@ -1,5 +1,5 @@
 import * as elementTypes from "../../componentes/TiposElementos.js";
-import * as fabricar from "../../componentes/Fabrica.js";
+import * as fabricar from "../../core/Fabrica.js";
 
 const estiloPadrao = {
     border: 'thick double #32a1ce',

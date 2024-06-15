@@ -1,5 +1,4 @@
-import * as elementTypes from "../../componentes/TiposElementos.js";
-import * as fabricar from "../../componentes/Fabrica.js";
+import * as fabricar from "../../core/Fabrica.js";
 
 export default function fabricaForm(formulario){
     const { card, botaoEnvia, labelnome, inputnome, labelemail, inputemail, form } = formulario;

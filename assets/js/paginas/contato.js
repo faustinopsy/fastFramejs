@@ -1,7 +1,6 @@
-import * as elementTypes from "../componentes/TiposElementos.js";
 import fabricaForm from "./formulario/formulario.js";
 import * as metaContato from "./headmeta/metacontato.js";
-import * as fabricar from "../componentes/Fabrica.js";
+import * as fabricar from "../core/Fabrica.js";
 
 
 export async function fabricaContato(fetchDados){

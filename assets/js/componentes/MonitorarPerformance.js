@@ -1,4 +1,4 @@
-import * as fabricar from "./Fabrica.js";
+import * as fabricar from "../core/Fabrica.js";
 export class MonitorarPerformance {
     constructor() {
       this.modal = this.createModal();

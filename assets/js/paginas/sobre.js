@@ -1,7 +1,6 @@
-import * as elementTypes from "../componentes/TiposElementos.js";
 import fabricaCEP from "./formulario/formCEP.js";
 import * as metaSobre from "./headmeta/metasobre.js";
-import * as fabricar from "../componentes/Fabrica.js";
+import * as fabricar from "../core/Fabrica.js";
 
 export async function fabricaSobre(fetchDados){
     const { main, article, section1, section2, aside, imagem } = fetchDados;
