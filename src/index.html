@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer type='module' src="src/js/RegistraSW.js"></script>
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    script-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    connect-src 'self' https://api.openweathermap.org https://viacep.com.br/;
+    worker-src 'self';
+    manifest-src 'self';
+    child-src 'none';
+    upgrade-insecure-requests;
+"> 
+</head>
+<body>
+  
+  <script defer type='module' src="src/js/App.js"></script>
+</body>
+</html>

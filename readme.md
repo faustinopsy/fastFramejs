@@ -182,3 +182,67 @@
 > ![Antes](img/antes.png)
 > depois:
 > ![Depois](img/depois.png)
+
+
+> [!NOTE]
+> **Atualizações para melhoria de desempenho 11-07-2024 :*webpack*
+> irei deixar a pasta dist pronta para que testem
+>
+> 
+> 1- passo: criar o arquivo package.json, mas nele precisa especificar qual o arquivo javascript principal que é o ponto inicial do sistema 
+> 
+> ```
+> npm init -y
+> ```
+> 2- passo: instalar as bibliotecas necessarias
+> ```
+> npm install --save-dev webpack webpack-cli mini-css-extract-plugin html-webpack-plugin  > css-loader style-loader babel-loader @babel/core @babel/preset-env 
+> ```
+> 3- passo: criar o arquivo webpack na raiz do projeto, "webpack.config.js" com o conteúdo.
+> ```
+> const path = require('path');
+> const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+> const HtmlWebpackPlugin = require('html-webpack-plugin');
+> 
+> module.exports = {
+>   entry: './src/js/App.js',  // Arquivo de entrada principal
+>  output: {
+>     filename: 'App.js',
+>     path: path.resolve(__dirname, 'dist'),  // Diretório de saída
+>   },
+>   module: {
+>     rules: [
+>       {
+>         test: /\.js$/,
+>         exclude: /node_modules/,
+>         use: {
+>           loader: 'babel-loader',
+>           options: {
+>             presets: ['@babel/preset-env'],
+>           },
+>         },
+>       },
+>       {
+>         test: /\.css$/,
+>         use: [MiniCssExtractPlugin.loader, 'css-loader'],
+>       },
+>     ],
+>   },
+>   plugins: [
+>     new MiniCssExtractPlugin({
+>      filename: 'styles.css',
+>     }),
+>     new HtmlWebpackPlugin({
+>       template: './src/index.html',  // Caminho do seu arquivo HTML
+>       filename: 'index.html',  // Nome do arquivo gerado na pasta dist
+>     }),
+>   ],
+>   mode: 'production',
+>   devtool: "source-map",
+> };
+> ```
+> 4- passo: o comando para deploy:
+> ```
+> npm run build
+> ```
+> no fina lé gerado a pasta dist com todos os arquivos prontos para publicar.
